@@ -1,5 +1,4 @@
 <script setup>
-import { dvcDefaultLogger } from "@devcycle/js-client-sdk";
 import AppDescription from "./components/AppDescription.vue";
 import ToggleBot from "./components/ToggleBot.vue";
 </script>

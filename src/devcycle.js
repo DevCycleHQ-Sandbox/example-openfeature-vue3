@@ -1,8 +1,8 @@
-import DevCycleProvider from "@devcycle/openfeature-web-provider";
+import { FbProvider } from "@featbit/openfeature-provider-js-client";
 import { OpenFeature } from "@openfeature/web-sdk";
 import { users } from "./users";
 
-let devcycleProvider;
+let featbitProvider;
 
 // Create DevCycle client and set up event listeners
 export const setUpOpenFeature = async () => {
@@ -12,18 +12,20 @@ export const setUpOpenFeature = async () => {
       "Set your VITE_DEVCYCLE_CLIENT_SDK_KEY environment variable to use the DevCycle JavaScript SDK."
     );
   }
-  // Initialize the DevCycle client with your SDK key and user
-  const devcycleOptions = { logLevel: "debug" };
-  devcycleProvider = new DevCycleProvider(
-    DEVCYCLE_CLIENT_SDK_KEY,
-    devcycleOptions
-  );
-  await OpenFeature.setContext(users[0]);
-  await OpenFeature.setProviderAndWait(devcycleProvider);
+  //   // Initialize the DevCycle client with your SDK key and user
+  const featbitOptions = {
+    secret: DEVCYCLE_CLIENT_SDK_KEY,
+    api: "https://featbit-tio-eu-eval.azurewebsites.net",
+    user: users[0],
+  };
+
+  featbitProvider = new FbProvider(featbitOptions);
+
+  await OpenFeature.setProviderAndWait(featbitProvider);
 
   return OpenFeature.getClient();
 };
 
-export function getDevCycleProvider() {
-  return devcycleProvider;
+export function getFeatbitProvider() {
+  return featbitProvider;
 }

@@ -1,5 +1,5 @@
 <script>
-import { getDevCycleProvider } from "../devcycle.js";
+import { getFeatbitProvider } from "../devcycle.js";
 
 export default {
   name: "ToggleBot",
@@ -35,7 +35,7 @@ export default {
       return shouldWink ? "togglebot-wink.png" : "togglebot.png";
     },
     getVariationName: () => {
-      const devcycleProvider = getDevCycleProvider();
+      const devcycleProvider = getFeatbitProvider();
       const features = devcycleProvider.devcycleClient.allFeatures();
       return features["hello-togglebot"]?.variationName ?? "Default";
     },
@@ -62,8 +62,8 @@ export default {
       :class="`ToggleBot-logo spin-${spinSpeed}`"
       alt="togglebot"
     />
-    <div className="ToggleBot-variation">
+    <!-- <div className="ToggleBot-variation">
       Serving Variation: <b>"{{ getVariationName() }}"</b>
-    </div>
+    </div> -->
   </div>
 </template>

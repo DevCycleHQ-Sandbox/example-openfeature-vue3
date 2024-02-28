@@ -10,11 +10,10 @@
     "test": "vitest"
   },
   "dependencies": {
-    "@devcycle/js-client-sdk": "^1.21.0",
-    "@devcycle/openfeature-web-provider": "^0.7.0",
-    "@openfeature/core": "^0.0.25",
-    "@openfeature/web-sdk": "^0.4.12",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "@featbit/openfeature-provider-js-client": "^1.0.1",
+    "@openfeature/web-sdk": "^0.4.9",
+    "featbit-js-client-sdk": "^1.0.6"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.4.0",
