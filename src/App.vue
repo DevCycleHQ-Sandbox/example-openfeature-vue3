@@ -1,17 +1,39 @@
 <script setup>
+/*
+    |
+    |--------------------------------------------------------------------------
+    | Remove DevCycle specific imports
+    |--------------------------------------------------------------------------
+    | This import is used by the DevCycle logging which will not work with the Featbit Provider. 
+    |
+    | import { dvcDefaultLogger } from "@devcycle/js-client-sdk" 
+    | 
+    */
+
 import AppDescription from "./components/AppDescription.vue";
 import ToggleBot from "./components/ToggleBot.vue";
 </script>
 
 <script>
-import { setUpOpenFeature } from "./devcycle.js";
+/*
+    |
+    |--------------------------------------------------------------------------
+    | Update Provider Instantiation File Name
+    |--------------------------------------------------------------------------
+    | The provider.js file is the file that contains the setup for the Featbit Provider and should be imported instead of the devcycle.js file.
+    |
+    | import { setUpOpenFeature } from "./devcycle.js";
+    | 
+    */
+
+import { setUpOpenFeature } from "./provider.js";
 
 export default {
   data() {
     return {
       initialized: false,
       componentKey: 0,
-      openFeatureClient: null, // Add a property to store the result
+      openFeatureClient: null,
     };
   },
   methods: {
@@ -20,16 +42,11 @@ export default {
     },
   },
   async mounted() {
-    /**
-     * Initialize the DevCycle client with your SDK key and user
-     */
     this.openFeatureClient = await setUpOpenFeature();
-
     if (this.openFeatureClient) {
       this.initialized = true;
     }
 
-    // Update the app when DevCycle receives realtime updates from the dashboard
     this.openFeatureClient.addHandler("PROVIDER_CONFIGURATION_CHANGED", () => {
       this.forceRerender();
       console.log("Provider configuration changed");

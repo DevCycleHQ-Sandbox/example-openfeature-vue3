@@ -1,5 +1,14 @@
 <script>
-import { getFeatbitProvider } from "../devcycle.js";
+/*
+    |
+    |--------------------------------------------------------------------------
+    | Remove DevCycle specific imports
+    |--------------------------------------------------------------------------
+    | This import is used by the DevCycle getVariationName method which will not work with the Featbit Provider. 
+    |
+    | import { getDevCycleProvider } from "../devcycle.js"; 
+    | 
+    */
 
 export default {
   name: "ToggleBot",
@@ -34,11 +43,20 @@ export default {
       if (spinSpeed === "surprise") return "unicorn.svg";
       return shouldWink ? "togglebot-wink.png" : "togglebot.png";
     },
-    getVariationName: () => {
-      const devcycleProvider = getFeatbitProvider();
-      const features = devcycleProvider.devcycleClient.allFeatures();
-      return features["hello-togglebot"]?.variationName ?? "Default";
-    },
+    /*
+    |
+    |--------------------------------------------------------------------------
+    | Remove getVariationName method
+    |--------------------------------------------------------------------------
+    | The DevCycle specific getVariationName method will not work with the Featbit Provider. 
+    |
+    | 
+    | getVariationName: () => {
+    |   const devcycleProvider = getFeatbitProvider();
+    |   const features = devcycleProvider.devcycleClient.allFeatures();
+    |   return features["hello-togglebot"]?.variationName ?? "Default";
+    |  },
+    */
   },
   mounted() {
     this.spinSpeed = this.openFeatureClient.getStringValue(
@@ -62,8 +80,16 @@ export default {
       :class="`ToggleBot-logo spin-${spinSpeed}`"
       alt="togglebot"
     />
-    <!-- <div className="ToggleBot-variation">
-      Serving Variation: <b>"{{ getVariationName() }}"</b>
-    </div> -->
+    <!--
+    |
+    |--------------------------------------------------------------------------
+    | Remove getVariationName UI
+    |--------------------------------------------------------------------------
+    | This UI element is specific to DevCycle method and will not work with the Featbit Provider.
+    |
+    | <div className="ToggleBot-variation">
+    |   Serving Variation: <b>"{{ getVariationName() }}"</b>
+    | </div> 
+    -->
   </div>
 </template>
