@@ -32,7 +32,7 @@ export default {
     },
     getImageSource: (spinSpeed, shouldWink) => {
       if (spinSpeed === "surprise") return "unicorn.svg";
-      return shouldWink ? "togglebot-wink.png" : "togglebot.png";
+      return shouldWink ? "togglebot-wink.svg" : "togglebot.svg";
     },
     getVariationName: () => {
       const devcycleProvider = getDevCycleProvider();
